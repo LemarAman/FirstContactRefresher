@@ -3,7 +3,8 @@
 Download Auto Hotkey https://www.autohotkey.com/
 
 Open a Chrome Window with the 1st contact page 
-Do not open any other tabs in this window.
+
+Do not open any other tabs in this window. Make the window small and put it to the side. 
 
 Save autorefresher.ahk to your desktop.
 Double click autorefresher on your desk top at the beginning of your shift.
