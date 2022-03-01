@@ -1,6 +1,7 @@
 # FirstContactRefresher
 
 Download Auto Hotkey https://www.autohotkey.com/
+
 Open a Chrome Window with the 1st contact page 
 Do not open any other tabs in this window.
 
