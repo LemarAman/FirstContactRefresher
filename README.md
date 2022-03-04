@@ -1,6 +1,6 @@
 # FirstContactRefresher
 
-This script automatically will refresh your first contact page every 3 minutes for 9 hours. 
+This script automatically will refresh your first contact page every 2 minutes for 9 hours. 
 
 To install: 
 
