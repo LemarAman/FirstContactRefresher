@@ -14,3 +14,5 @@ Save autorefresher.ahk to your desktop.
 Double click autorefresher on your desk top at the beginning of your shift.
 
 To exit the script, open your tray window on the bottom right, right click the green H, and click "Exit"
+
+Run the script as an admin for blockinput functionality. This prevents interference during regular activity. 
