@@ -25,6 +25,7 @@ openFcaPage(){
 	Sleep, 120000
 }
 
+
 firstContactAlert(){
 	Sleep 10
 	SoundGet, normalVolume
@@ -48,6 +49,13 @@ firstContactAlert(){
 loop 540
 	
 {
+	IfWinNotExist, 1st Contact
+		MsgBox, 4, No FCA Page Open, Would you like to go to open an FCA page? (press Yes or No), 20
+	IfMsgBox, Yes
+		openFcaPage()
+	else IfMsgBox No
+		sleep 50
+	
 	
 	BlockInput,On
 	Sleep 50
