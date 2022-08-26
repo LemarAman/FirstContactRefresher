@@ -1,8 +1,8 @@
 # FirstContactRefresher
 
 Requirements:
-Windows
-Chrome
+Windows,
+Chrome,
 AutoHotKey
 
 This script automatically will refresh your first contact page every minute for 9 hours. 
