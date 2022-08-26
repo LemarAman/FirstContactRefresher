@@ -1,18 +1,22 @@
 # FirstContactRefresher
 
-This script automatically will refresh your first contact page every 2 minutes for 9 hours. 
+Requirements:
+Windows
+Chrome
+AutoHotKey
+
+This script automatically will refresh your first contact page every minute for 9 hours. 
+If an agent has a new first contact, there will be a visual notification in terms of a pop up prompting the agent to go to their first contact page. There will also be an audio cue.
+It will keep the first contact page confined to the top left corner and below all other windows.
+
+Run the file as an administrator so the blockinput command works properly. Blocking the input while it scans the page ensures no interferance while doing other business on the PC.
+
 
 To install: 
 
 Download Auto Hotkey https://www.autohotkey.com/
 
-Open a Chrome Window with the 1st contact page 
-
-Do not open any other tabs in this window. Make the window small and put it to the side. 
-
-Save autorefresher.ahk to your desktop.
-Double click autorefresher on your desk top at the beginning of your shift.
+Save autorefresher.ahk to your desktop or wherever you will remember to find it. 
+Right click autorefresher.ahk and run as administrator at the beginning of your shift.
 
 To exit the script, open your tray window on the bottom right, right click the green H, and click "Exit"
-
-Run the script as an admin for blockinput functionality. This prevents interference during regular activity. 
