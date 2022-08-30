@@ -6,11 +6,10 @@ SetTitleMatchMode, 2
 SendMode, Input
 Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 
-Sleep, 3000
+Sleep, 6000
 WinMove, 1st Contact, ,0,0,1026,379
+Sleep 10
 Winset, AlwaysOnTop, Off, 1st Contact
-
-;WinMove, 1st Contact, ,0,0,1026,964 ;top left screen
 
 noFca = 0 record
 oneRecord = 1 record
@@ -49,30 +48,25 @@ firstContactAlert(){
 loop 540
 	
 {
-	IfWinNotExist, 1st Contact
-		MsgBox, 4, No FCA Page Open, Would you like to go to open an FCA page? (press Yes or No), 20
-	IfMsgBox, Yes
-		openFcaPage()
-	else IfMsgBox No
-		sleep 50
 	
 	
 	BlockInput,On
 	Sleep 50
 	WinMove, 1st Contact, ,0,0,1354,892
+	sleep 50
+	ControlClick,X229 Y572, 1st Contact
+	Sleep 10
+	Send, , ^a,
 	Sleep 50
-	ControlSend, , {CtrlDown}a{CtrlUp}, 1st Contact 
-	Sleep 100
-	ControlSend, , {CtrlDown}c{CtrlUp}, 1st Contact 
-	Sleep 100
-	WinMove, 1st Contact, ,0,0,1026,379
-	Sleep, 50
+	Send, , ^c,
+	Sleep 50
 	WinSet, Bottom, , 1st Contact
 	Sleep 50
 	ControlFocus, , 1st Contact
 	Sleep, 50
 	ControlSend,,{F5}, 1st Contact 
 	Sleep 50
+	WinMove, 1st Contact, ,0,0,1026,379
 	BlockInput,Off
 	Sleep 10
 	
@@ -82,9 +76,8 @@ loop 540
 	
 	Sleep 50
 	
-	clipboard = "" ; clears the clipbard
-	Sleep 50
-	clipboard := ""
+	clipboard := "" ; clears the clipbard
+	
 	
 	sleep, 60000
 	
