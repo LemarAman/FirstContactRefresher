@@ -5,14 +5,19 @@ SetTitleMatchMode, 2
 #InstallMouseHook
 SendMode, Input
 
+Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
+Sleep, 10000
+Winget,FCAID,ID, 1st Contact
+
+Sleep 10
 ; Opens FCA Page, sets it to always be on bottom so it's out of the way.
 
-Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 
-Sleep, 6000
-WinMaximize, 1st Contact
 Sleep 10
-Winset, AlwaysOnTop, Off, 1st Contact
+Winset, AlwaysOnTop, Off, ahk_id %FCAID%
+Sleep 10
+WinMove, ahk_id %FCAID%, ,0,0,1026,379
+
 
 ; Prompts user to enter the agents he wants to track for FCAs.
 
@@ -29,16 +34,21 @@ for i in agent_Array {
 openFcaPage(){
 	Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 	Sleep 10000
-	WinMaximize, 1st Contact
+	WinMove, ahk_id %FCAID%, ,1497,0,2073,1370
 	Sleep, 60000
 }
 
 ; Function to alert the user there is a first contact available. Displays a message box with option to go to FCA page, and a auditory cue.
 firstContactAlert(){
+	SoundGet, NormalVolume
+	Sleep 50
+	SoundSet, 30
+	Sleep, 10
 	SoundBeep, 750, 500
 	Sleep, 100
 	SoundBeep, 750, 500
 	Sleep 10
+	SoundSet, NormalVolume
 	MsgBox, 4, You have a first contact!, Would you like to go to your FCA page? (press Yes or No), 20
 	IfMsgBox Yes
 		openFcaPage()
@@ -48,8 +58,6 @@ firstContactAlert(){
 }
 
 ; Loops 540 times (540 minutes, duration of a shift). 
-; !!!!!!!!!! IMPORTANT !!!!!!!!!!!! Some machines need this script ran as administrator in order for Block Input to work.
-; Block Input is used to prevent interference (eg. mouse clicks, typing) while the following occurs:
 ; Each Loop first highlights the entire page and copies it to the clipboard.
 ; It then checks to see if there is a FCA on the FCA page specified by the user during program onset.
 ; Inner loop, If the FCA exists, firstContactAlert() is used, if not,exits out of inner loop
@@ -57,17 +65,19 @@ firstContactAlert(){
 loop 540
 	
 {
+	IfWinNotExist, ahk_id %FCAID%
+		Reload
 	BlockInput,On
 	Sleep 50
-	WinMove, 1st Contact, ,0,0,1354,892
+	WinMove, ahk_id %FCAID%, ,0,0,1354,892
 	sleep 50
-	ControlClick,X229 Y572, 1st Contact
+	ControlClick,X229 Y572, ahk_id %FCAID%
 	Sleep 100
-	ControlSend,,{Ctrl Down}ac{Ctrl Up}, 1st Contact
+	ControlSend,,{Ctrl Down}ac{Ctrl Up}, ahk_id %FCAID%
 	Sleep 100
-	WinSet, Bottom, , 1st Contact
+	WinSet, Bottom, , ahk_id %FCAID%
 	Sleep 50
-	WinMove, 1st Contact, ,0,0,1026,379
+	WinMove, ahk_id %FCAID%, ,0,0,1026,379
 	Sleep 10
 	BlockInput,Off
 	Sleep 10
@@ -90,16 +100,18 @@ loop 540
 	
 	
 	sleep, 50000
-	ControlFocus, , 1st Contact
-	Sleep, 50
-	ControlSend,,{F5}, 1st Contact
-	Sleep 50
+	BlockInput, on
+	ControlFocus, , ahk_id %FCAID%
+	Sleep 10
+	ControlSend,,{F5},ahk_id %FCAID%
+	BlockInput,Off
+	
 	Sleep 10000
 	
 	
 }
 
-; User can hit escape on their keyboard to turn off the script.
+; User can hit escape to turn off the script
 Esc::ExitApp
 
 return
