@@ -5,7 +5,7 @@ SetTitleMatchMode, 2
 #InstallMouseHook
 SendMode, Input
 
-; Opens FCA Page, sets it to always be on botto so it's out of the way.
+; Opens FCA Page, sets it to always be on bottom so it's out of the way.
 
 Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 
