@@ -8,8 +8,8 @@ SendMode, Input
 Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 Sleep, 10000
 Winget,FCAID,ID, 1st Contact
-
 Sleep 10
+
 ; Opens FCA Page, sets it to always be on bottom so it's out of the way.
 
 
@@ -40,10 +40,6 @@ openFcaPage(){
 
 ; Function to alert the user there is a first contact available. Displays a message box with option to go to FCA page, and a auditory cue.
 firstContactAlert(){
-	SoundGet, NormalVolume
-	Sleep 50
-	SoundSet, 30
-	Sleep, 10
 	SoundBeep, 750, 500
 	Sleep, 100
 	SoundBeep, 750, 500
