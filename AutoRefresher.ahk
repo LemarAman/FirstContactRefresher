@@ -4,6 +4,9 @@
 SetTitleMatchMode, 2
 #InstallMouseHook
 SendMode, Input
+
+; Opens FCA Page, sets it to always be on botto so it's out of the way.
+
 Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 
 Sleep, 6000
@@ -11,22 +14,26 @@ WinMove, 1st Contact, ,0,0,1026,379
 Sleep 10
 Winset, AlwaysOnTop, Off, 1st Contact
 
-InputBox, nameOfAgents, Agent Names, Please enter the names of the agent's FCAs you'd like to be notified for. `rExample: Daisy`,Adam`,John
+; Prompts user to enter the agents he wants to track for FCAs.
 
+InputBox, nameOfAgents, Agent Names, Please enter the names of the agents FCAs. Example: Joe, John, Bob
+
+;Creates an array of agent names and appends a return carat to each element so as to recognize how FCAs are formatted on the webpage, particularly the agent's name.
 agent_Array := StrSplit(nameOfAgents, ",")
 for i in agent_Array {
     agent_Array[i] .= "`r"
 }
 
+; Function to open the FCA page and move it to the main screen.
 
 openFcaPage(){
 	Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 	Sleep 10000
-	WinMove, 1st Contact, ,1497,0,2073,1370
+	WinMaximize, 1st Contact
 	Sleep, 60000
 }
 
-
+; Function to alert the user there is a first contact available. Displays a message box with option to go to FCA page, and a auditory cue.
 firstContactAlert(){
 	SoundBeep, 750, 500
 	Sleep, 100
@@ -40,6 +47,11 @@ firstContactAlert(){
 	
 }
 
+; Loops 540 times (540 minutes, duration of a shift). 
+; Each Loop first highlights the entire page and copies it to the clipboard.
+; It then checks to see if there is a FCA on the FCA page specified by the user during program onset.
+; Inner loop, If the FCA exists, firstContactAlert() is used, if not,exits out of inner loop
+; Clipboard is then cleared and FCA page is refreshed for next iteration.
 loop 540
 	
 {
@@ -48,13 +60,9 @@ loop 540
 	WinMove, 1st Contact, ,0,0,1354,892
 	sleep 50
 	ControlClick,X229 Y572, 1st Contact
-	Sleep 50
-	WinMove, 1st Contact, ,0,0,1354,892
-	sleep 50
-	ControlClick,X229 Y572, 1st Contact
-	Sleep 50
+	Sleep 100
 	ControlSend,,{Ctrl Down}ac{Ctrl Up}, 1st Contact
-	Sleep 50
+	Sleep 100
 	WinSet, Bottom, , 1st Contact
 	Sleep 50
 	WinMove, 1st Contact, ,0,0,1026,379
@@ -89,7 +97,7 @@ loop 540
 	
 }
 
-
+; User can hit escape on their keyboard to turn off the script.
 Esc::ExitApp
 
 return
