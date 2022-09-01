@@ -48,6 +48,8 @@ firstContactAlert(){
 }
 
 ; Loops 540 times (540 minutes, duration of a shift). 
+; !!!!!!!!!! IMPORTANT !!!!!!!!!!!! Some machines need this script ran as administrator in order for Block Input to work.
+; Block Input is used to prevent interference (eg. mouse clicks, typing) while the following occurs:
 ; Each Loop first highlights the entire page and copies it to the clipboard.
 ; It then checks to see if there is a FCA on the FCA page specified by the user during program onset.
 ; Inner loop, If the FCA exists, firstContactAlert() is used, if not,exits out of inner loop
