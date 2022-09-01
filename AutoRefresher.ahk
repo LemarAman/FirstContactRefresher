@@ -10,7 +10,7 @@ SendMode, Input
 Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 
 Sleep, 6000
-WinMove, 1st Contact, ,0,0,1026,379
+WinMaximize, 1st Contact
 Sleep 10
 Winset, AlwaysOnTop, Off, 1st Contact
 
