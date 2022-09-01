@@ -11,7 +11,7 @@ WinMove, 1st Contact, ,0,0,1026,379
 Sleep 10
 Winset, AlwaysOnTop, Off, 1st Contact
 
-InputBox, nameOfAgents, Agent Names, Please enter the names of the agents FCAs you'd like to be notified for. `rExample: Daisy`,Adam`,John
+InputBox, nameOfAgents, Agent Names, Please enter the names of the agent's FCAs you'd like to be notified for. `rExample: Daisy`,Adam`,John
 
 agent_Array := StrSplit(nameOfAgents, ",")
 for i in agent_Array {
