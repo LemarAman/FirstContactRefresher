@@ -11,7 +11,7 @@ WinMove, 1st Contact, ,0,0,1026,379
 Sleep 10
 Winset, AlwaysOnTop, Off, 1st Contact
 
-InputBox, nameOfAgents, Agent Names, Please enter the names of the agents FCAs. Example: Joe, John, Bob
+InputBox, nameOfAgents, Agent Names, Please enter the names of the agents FCAs you'd like to be notified for. `rExample: Daisy`,Adam`,John
 
 agent_Array := StrSplit(nameOfAgents, ",")
 for i in agent_Array {
@@ -21,7 +21,7 @@ for i in agent_Array {
 
 openFcaPage(){
 	Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
-	Sleep 5000
+	Sleep 10000
 	WinMove, 1st Contact, ,1497,0,2073,1370
 	Sleep, 60000
 }
@@ -43,8 +43,6 @@ firstContactAlert(){
 loop 540
 	
 {
-	
-	
 	BlockInput,On
 	Sleep 50
 	WinMove, 1st Contact, ,0,0,1354,892
@@ -93,4 +91,5 @@ loop 540
 
 
 Esc::ExitApp
+
 return
