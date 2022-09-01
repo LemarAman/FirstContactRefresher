@@ -3,13 +3,13 @@
 #Persistent
 SetTitleMatchMode, 2
 #InstallMouseHook
-SendMode, Input
-
+;SendMode, Input
+SetKeyDelay, 8
 Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
-Sleep, 10000
+Sleep, 6000
 Winget,FCAID,ID, 1st Contact
 Sleep 10
-
+Winset, Transparent, 0, ahk_id %FCAID%
 ; Opens FCA Page, sets it to always be on bottom so it's out of the way.
 
 
@@ -34,7 +34,11 @@ for i in agent_Array {
 openFcaPage(){
 	Run, chrome.exe "https://us-west-2.actionstep.com/mym/asfw/workflow/actions/user-list/user_list_id/627"" " --new-window "
 	Sleep 10000
-	WinMove, ahk_id %FCAID%, ,1497,0,2073,1370
+	Winget,NewFCAWindow,ID, 1st Contact
+	Sleep 10
+	WinMove, ahk_id %NewFCAWindow%, ,1497,0,2073,1370
+	Sleep 10
+	Send, {F8}
 	Sleep, 60000
 }
 
@@ -61,6 +65,7 @@ firstContactAlert(){
 loop 540
 	
 {
+	
 	IfWinNotExist, ahk_id %FCAID%
 		Reload
 	BlockInput,On
@@ -69,8 +74,8 @@ loop 540
 	sleep 50
 	ControlClick,X229 Y572, ahk_id %FCAID%
 	Sleep 100
-	ControlSend,,{Ctrl Down}ac{Ctrl Up}, ahk_id %FCAID%
-	Sleep 100
+	ControlSend,,{Ctrl Down}acr{Ctrl Up}, ahk_id %FCAID%
+	Sleep 50
 	WinSet, Bottom, , ahk_id %FCAID%
 	Sleep 50
 	WinMove, ahk_id %FCAID%, ,0,0,1026,379
@@ -88,21 +93,15 @@ loop 540
 	}
 	
 	
-	Sleep 50
+	Sleep 10
 	
 	
 	
 	clipboard := "" ; clears the clipboard
 	
 	
-	sleep, 50000
-	BlockInput, on
-	ControlFocus, , ahk_id %FCAID%
-	Sleep 10
-	ControlSend,,{F5},ahk_id %FCAID%
-	BlockInput,Off
-	
-	Sleep 10000
+	sleep, 60000
+
 	
 	
 }
